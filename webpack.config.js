@@ -4,6 +4,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 
 const buildPath = path.resolve(__dirname, 'dist');
 const srcPath = path.resolve(__dirname, 'src');
@@ -55,6 +56,7 @@ module.exports = {
         filename: '[name]-[hash].css',
       }),
     new ForkTsCheckerPlugin(),
+    new DotenvWebpackPlugin(),
   ].filter(Boolean),
   module: {
     rules: [
@@ -73,27 +75,37 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.(png|svg)$/,
-        type: 'asset',
-        parser: {
-          dataUrlCondition: {
-            maxSize: 10 * 1024,
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: 'images/[name].[hash:8].[ext]',
+            },
           },
-        },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
       },
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.js', '.jsx', '.ts'],
+    extensions: ['.tsx', '.js', '.jsx', '.ts', '.svg'],
     alias: {
-      '@components': path.join(srcPath, 'components'),
-      '@config': path.join(srcPath, 'config'),
-      '@styles': path.join(srcPath, 'styles'),
-      '@utils': path.join(srcPath, 'utils'),
-      '@App': path.join(srcPath, 'App'),
-      '@pages': path.join(srcPath, 'App/pages'),
-      '@store': path.join(srcPath, 'store'),
-      '@models': path.join(srcPath, 'store/models'),
+      '@/components': path.join(srcPath, 'components'),
+      '@/api': path.join(srcPath, 'api'),
+      '@/App': path.join(srcPath, 'App'),
+      '@/pages': path.join(srcPath, 'pages'),
+      '@/store': path.join(srcPath, 'store'),
+      '@/models': path.join(srcPath, 'store/models'),
+      '@/ui': path.join(srcPath, 'shared/ui'),
+      '@/utils': path.join(srcPath, 'shared/utils'),
+      '@/styles': path.join(srcPath, 'shared/styles'),
+      '@/assets': path.join(srcPath, 'shared/assets'),
+      '@/hooks': path.join(srcPath, 'shared/hooks'),
     },
   },
   devServer: {

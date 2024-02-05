@@ -1,0 +1,45 @@
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.page {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &Left {
+    display: flex;
+    flex-direction: column;
+    padding-left: 29px;
+  }
+}
+
+.catImage {
+  height: 341px;
+  width: 225px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 68%;
+  position: absolute;
+  bottom: 0;
+  background-color: black;
+}

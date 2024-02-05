@@ -1,19 +1,36 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES6",
+    "allowUmdGlobalAccess": true,
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "@/App/*": ["src/App/*"],
+      "@/api/*": ["src/api/*"],
+      "@/components/*": ["src/components/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/store/*": ["src/store/*"],
+      "@/models/*": ["src/store/models/*"],
+      "@/ui/*": ["src/shared/ui/*"],
+      "@/utils/*": ["src/shared/utils/*"],
+      "@/assets/*": ["src/shared/assets/*"],
+      "@/hooks/*": ["src/shared/hooks/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

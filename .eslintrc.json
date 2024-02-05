@@ -6,7 +6,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:prettier/recommended",
-    "./perfectionist.eslintrs.json"
+    "./perfectionist.eslintrc.json"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
