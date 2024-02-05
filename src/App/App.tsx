@@ -7,13 +7,10 @@ import { setupStore } from '../store';
 
 const store = setupStore();
 
-const App: React.FC = () => {
-  console.log(process.env.REACT_APP_BASE_API);
+const App: React.FC = () => (
+  <Provider store={store}>
+    <Currency />
+  </Provider>
+);
 
-  return (
-    <Provider store={store}>
-      <Currency />
-    </Provider>
-  );
-};
 export default App;
